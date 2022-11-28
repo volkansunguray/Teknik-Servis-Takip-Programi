@@ -1,0 +1,103 @@
+
+
+
+NOT: Database name TEKNIK_SERVIS
+
+
+
+
+
+
+
+
+
+
+Create Database TEKNIK_SERVIS
+Use TEKNIK_SERVIS
+Go
+
+
+--
+-- Definition for table tbl_personel : 
+--
+
+CREATE TABLE dbo.tbl_personel (
+  id int IDENTITY(1, 1) NOT NULL,
+  personel_adi nvarchar(50) COLLATE Turkish_CI_AS NOT NULL,
+  personel_eposta nvarchar(50) COLLATE Turkish_CI_AS NOT NULL,
+  personel_sifre nvarchar(30) COLLATE Turkish_CI_AS NOT NULL,
+  personel_telefon nvarchar(15) COLLATE Turkish_CI_AS NOT NULL,
+  CONSTRAINT PK_tbl_personel PRIMARY KEY CLUSTERED (id)
+    WITH (
+      PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF,
+      ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+ON [PRIMARY]
+GO
+
+--
+-- Definition for table tbl_teknikservis : 
+--
+
+CREATE TABLE dbo.tbl_teknikservis (
+  id int IDENTITY(1, 1) NOT NULL,
+  servis_tanim nvarchar(50) COLLATE Turkish_CI_AS NOT NULL,
+  servis_aciklama nvarchar(max) COLLATE Turkish_CI_AS NOT NULL,
+  baslangic_tarihi datetime CONSTRAINT DF_tbl_teknikservis_baslangic_tarihi DEFAULT getdate() NULL,
+  teslim_tarihi datetime NULL,
+  personel_id int NOT NULL,
+  ariza_durum bit CONSTRAINT DF_tbl_teknikservis_ariza_durum DEFAULT 0 NOT NULL,
+  CONSTRAINT PK_tbl_teknikservis PRIMARY KEY CLUSTERED (id)
+    WITH (
+      PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF,
+      ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+ON [PRIMARY]
+GO
+
+--
+-- Data for table dbo.tbl_personel  (LIMIT 0,500)
+--
+
+SET IDENTITY_INSERT dbo.tbl_personel ON
+GO
+
+INSERT INTO dbo.tbl_personel (id, personel_adi, personel_eposta, personel_sifre, personel_telefon)
+VALUES 
+  (3, N'Volkan Sunguray', N'volkan@sunguray.com', N'123#', N'05337612484')
+GO
+
+SET IDENTITY_INSERT dbo.tbl_personel OFF
+GO
+
+--
+-- Data for table dbo.tbl_teknikservis  (LIMIT 0,500)
+--
+
+SET IDENTITY_INSERT dbo.tbl_teknikservis ON
+GO
+
+INSERT INTO dbo.tbl_teknikservis (id, servis_tanim, servis_aciklama, baslangic_tarihi, teslim_tarihi, personel_id, ariza_durum)
+VALUES 
+  (1, N'Z4 Sifre Sorunu', N'Bilgisayarları açık bıraktıkları için windows logout yaptığı için kullanıcı adı ve şifre soruyor', '20221024 09:23:05.490', NULL, 3, 0)
+GO
+
+INSERT INTO dbo.tbl_teknikservis (id, servis_tanim, servis_aciklama, baslangic_tarihi, teslim_tarihi, personel_id, ariza_durum)
+VALUES 
+  (2, N'Deneme Kayıt', N'Deneme açıklaması
+', '20221111 10:17:53.173', '20221111 10:17:53.177', 3, 0)
+GO
+
+SET IDENTITY_INSERT dbo.tbl_teknikservis OFF
+GO
+
+--
+-- Definition for foreign keys : 
+--
+
+ALTER TABLE dbo.tbl_teknikservis
+ADD CONSTRAINT FK_tbl_teknikservis_tbl_personel FOREIGN KEY (personel_id) 
+  REFERENCES dbo.tbl_personel (id) 
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION
+GO
