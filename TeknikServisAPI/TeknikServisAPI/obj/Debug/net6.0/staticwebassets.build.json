@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "KSbm2pa6CwZjirYMih6B+tD1PW3rKVWUCbHAKFFcmEU=",
+  "Source": "TeknikServisAPI",
+  "BasePath": "_content/TeknikServisAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,96 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+        <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
+            {{ hataMesaji }}
+        </div>
+        </div>
+    </div>
+    <form [formGroup]="fgKayit" (ngSubmit)="kaydet()">
+        <div class="card">
+            <div class="card-header row">
+                <div class="col-md-10"> 
+                    Servis Kayıt Ayrıntısı 
+                </div>
+                <div class="form-check form-switch col-md-2">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Servis Durum</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="ariza_durum">
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="id">ID</span>
+                            <input type="text" class="form-control" formControlName="id" aria-label="ID"
+                                aria-describedby="basic-addon1" readonly />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="personel-id">P. ID</span>
+                            <select class="form-select" aria-label="Default select example" formControlName="personel_id">
+                                <option *ngFor="let item of personelListesi" value="">
+                                    &lt;Personel Seçiniz&gt;
+                                </option>
+                                <option *ngFor="let item of personelListesi" value="{{ item.id }}">
+                                    {{ item.personel_adi }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Görev Tanım</span>
+                            <input type="text" class="form-control" placeholder="Görev Tanım" aria-label="Görev Tanım"
+                                aria-describedby="basic-addon1" formControlName="servis_tanim" />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Görev Tar.</span>
+                            <input type="date" class="form-control" placeholder="Görev Tarihi" aria-label="Görev Tar."
+                                aria-describedby="basic-addon1" formControlName="baslangic_tarihi" />
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Görev Saati</span>
+                            <input type="time" class="form-control" placeholder="Görev saati" aria-label="Görev Saati"
+                                aria-describedby="basic-addon1" formControlName="servis_saati" required=""/>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Kayıt Tar.</span>
+                            <input type="date" class="form-control" placeholder="Kayıt Tarihi" aria-label="Kayıt Tarihi"
+                                aria-describedby="basic-addon1" formControlName="teslim_tarihi" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div>
+                            <span class="input-group-text btn-primary" id="basic-addon1">Görev Açıklaması.</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Görev Açıklaması"
+                                formControlName="servis_aciklama"></textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="!fgKayit.valid">Kaydet</button>
+            </div>
+
+        </div>
+
+    </form>
+</div>
