@@ -1,20 +1,16 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
-        <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
-            {{ hataMesaji }}
-        </div>
+            <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
+                {{ hataMesaji }}
+            </div>
         </div>
     </div>
     <form [formGroup]="fgKayit" (ngSubmit)="kaydet()">
         <div class="card">
             <div class="card-header row">
-                <div class="col-md-10"> 
-                    Servis Kayıt Ayrıntısı 
-                </div>
-                <div class="form-check form-switch col-md-2">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Servis Durum</label>
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="ariza_durum">
+                <div class="col-md-10">
+                    Servis Kayıt Ayrıntısı
                 </div>
             </div>
             <div class="card-body">
@@ -30,8 +26,9 @@
                     <div class="col-md-6">
                         <div class="input-group mb-3">
                             <span class="input-group-text btn-primary" id="personel-id">P. ID</span>
-                            <select class="form-select" aria-label="Default select example" formControlName="personel_id">
-                                <option *ngFor="let item of personelListesi" value="">
+                            <select class="form-select" aria-label="Default select example"
+                                formControlName="personel_id">
+                                <option *ngFor="let item of personelListesi" value="0" selected>
                                     &lt;Personel Seçiniz&gt;
                                 </option>
                                 <option *ngFor="let item of personelListesi" value="{{ item.id }}">
@@ -41,11 +38,29 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="input-group mb-3">
                             <span class="input-group-text btn-primary" id="basic-addon1">Görev Tanım</span>
                             <input type="text" class="form-control" placeholder="Görev Tanım" aria-label="Görev Tanım"
                                 aria-describedby="basic-addon1" formControlName="servis_tanim" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="ariza_durum">Durum</span>
+                            <select class="form-select" aria-label="Default select example"
+                                formControlName="ariza_durum">
+                                <option value="{{ kayitIcerik.ariza_durum }}">
+                                    Arıza Durumu: {{kayitIcerik.ariza_durum}}
+                                </option>
+                                <option value="1">
+                                    Yeni Kayıt
+                                </option>
+                                <option value="2">
+                                    Çözülmüş
+                                </option>
+                            </select>
                         </div>
                     </div>
 
@@ -62,7 +77,7 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text btn-primary" id="basic-addon1">Görev Saati</span>
                             <input type="time" class="form-control" placeholder="Görev saati" aria-label="Görev Saati"
-                                aria-describedby="basic-addon1" formControlName="servis_saati" required=""/>
+                                aria-describedby="basic-addon1" formControlName="servis_saati" required="" />
                         </div>
 
                     </div>
@@ -77,9 +92,21 @@
 
                     <div class="col-12">
                         <div>
-                            <span class="input-group-text btn-primary" id="basic-addon1">Görev Açıklaması.</span>
-                            <textarea class="form-control" aria-label="With textarea" placeholder="Görev Açıklaması"
-                                formControlName="servis_aciklama"></textarea>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text btn-primary" id="basic-addon1">Görev Açıklaması</span>
+                                <textarea class="form-control" aria-label="With textarea" placeholder="Görev Açıklaması"
+                                    formControlName="servis_aciklama"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text btn-primary" id="basic-addon1">Yapılan İşlemler</span>
+                                <textarea class="form-control" aria-label="With textarea" placeholder="Yapılan İşlemler"
+                                    formControlName="yapilan_islem"></textarea>
+                            </div>
                         </div>
                     </div>
 

@@ -3,7 +3,7 @@
     "TeknikServisAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "teknikservis/",
+      "launchUrl": "swagger/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

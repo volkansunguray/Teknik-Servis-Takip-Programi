@@ -45,6 +45,7 @@ namespace TeknikServisAPI.Controllers
             if (model.id < 1) model.baslangic_tarihi = DateTime.Now;
             if (model.personel_id < 1) hataMesaji += "Personel seçimi yapılmamış";
             if (string.IsNullOrEmpty(model.servis_tanim)) hataMesaji += "Servis tanımını boş geçemezsiniz!";
+            if (model.ariza_durum < 1) hataMesaji += "Servis durumu seçimi yapılmamış";
             model.teslim_tarihi = DateTime.Now;
 
             if (!string.IsNullOrEmpty(hataMesaji)) throw new Exception(hataMesaji);
@@ -64,10 +65,10 @@ namespace TeknikServisAPI.Controllers
                     --id=@id, 
                     servis_tanim=@servis_tanim, 
                     servis_aciklama=@servis_aciklama, 
-                    servis_tarihi=@servis_tarihi, 
-                    baslangis_tarihi=@baslangic_tarihi, 
+                    baslangic_tarihi=@baslangic_tarihi, 
                     teslim_tarihi = @teslim_tarihi, 
                     personel_id=@personel_id,
+                    yapilan_islem = @yapilan_islem,
                     ariza_durum=@ariza_durum where id=@id";
 
                 var parametre = new
@@ -78,6 +79,7 @@ namespace TeknikServisAPI.Controllers
                     baslangic_tarihi = model.baslangic_tarihi,
                     teslim_tarihi = model.teslim_tarihi,
                     personel_id = model.personel_id,
+                    yapilan_islem = model.yapilan_islem,
                     ariza_durum = model.ariza_durum
                 };
                 conn.Execute(sorgu, parametre);
@@ -101,7 +103,8 @@ namespace TeknikServisAPI.Controllers
                         servis_aciklama, 
                         baslangic_tarihi, 
                         teslim_tarihi,
-                        personel_id, 
+                        personel_id,
+                        yapilan_islem,
                         ariza_durum
                     ) 
                     values (
@@ -109,7 +112,8 @@ namespace TeknikServisAPI.Controllers
                         @servis_aciklama, 
                         @baslangic_tarihi, 
                         @teslim_tarihi, 
-                        @personel_id, 
+                        @personel_id,
+                        @yapilan_islem,
                         @ariza_durum);
                     SELECT CAST(SCOPE_IDENTITY() as bigint);";
                 var parametre = new
@@ -120,6 +124,7 @@ namespace TeknikServisAPI.Controllers
                     baslangic_tarihi = model.baslangic_tarihi,
                     teslim_tarihi = model.teslim_tarihi,
                     personel_id = model.personel_id,
+                    yapilan_islem = model.yapilan_islem,
                     ariza_durum = model.ariza_durum
                 };
                 model.id = conn.QueryFirstOrDefault<long>(sorgu, parametre);

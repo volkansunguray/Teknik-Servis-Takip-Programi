@@ -15,6 +15,7 @@ namespace TeknikServisAPI.Models
         public long personel_id { get; set; }
         public long ariza_durum { get; set; } = 0;
         public long kaydeden_id { get; set; }
+        public string yapilan_islem { get; set; } = "";
 
     }
 }

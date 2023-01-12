@@ -1,2 +1,11 @@
-<app-top-menu></app-top-menu>
-<router-outlet></router-outlet>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <p>Hoş Geldiniz. Bu Modül Aydın Meslek Yüksekokulunda Bilgi İşlem Birimine Gelen Arıza ve isteklerin Kontrolü için Yazılmıştır.</p><br>
+            <p>Arıza giriş ve bitimi işlemlerini  "Servis Listesi" bölümünden, yeni Kayıt işlemlerini "Yeni Kayıt" bölümünden yapabilirsiniz.</p>
+            <hr>
+            <p>Güncel Çalışan Listesi</p>
+            <p *ngFor="let item of personelListesi">{{ item.personel_adi }}</p>
+        </div>
+    </div>
+</div>

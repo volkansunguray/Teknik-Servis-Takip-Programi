@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,6 +18,7 @@ export class ServisListeComponent implements OnInit {
     sub: any;
     hataMesaji: string = '';
     errorMessage: any;
+    arizaDurum: any;
 
   constructor(
     private webApi: ServisApiService,

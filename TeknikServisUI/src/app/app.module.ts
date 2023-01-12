@@ -9,6 +9,9 @@ import { ServisKayitComponent } from './servis-kayit/servis-kayit.component';
 import { AnasayfaComponent } from './anasayfa/anasayfa.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './entity/services/auth.guard';
+import { BodyComponent } from './body/body.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     TopMenuComponent,
     ServisListeComponent,
     ServisKayitComponent,
-    AnasayfaComponent
+    AnasayfaComponent,
+    LoginComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule    
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

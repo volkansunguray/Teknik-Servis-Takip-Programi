@@ -10,5 +10,8 @@ namespace TeknikServisAPI.Models
         public long id { get; set; } = 0;
         public string personel_adi { get; set; } = "";
         public string personel_eposta { get; set; } = "";
+        public string personel_sifre { get; set; } = "";
+        public string personel_telefon { get; set; } = ""; 
+        public string personel_yetki { get; set; } = "";
     }
 }

@@ -3,4 +3,5 @@ export class Personel {
     personel_adi: string = '';
     personel_eposta: string = '';
     personel_sifre: string = '';
+    personel_yetki: string = '';
 }

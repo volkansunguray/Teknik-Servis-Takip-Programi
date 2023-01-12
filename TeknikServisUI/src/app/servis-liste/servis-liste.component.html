@@ -1,50 +1,62 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-12">
-            <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
-                {{ hataMesaji }}
+<div class="container mt-5" style="font-size: 17px;">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
+                        {{ hataMesaji }}
+                    </div>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Arama</span>
+                        <input type="text" class="form-control" placeholder="Arama" [(ngModel)]="inputArama" aria-label="Arama"
+                            aria-describedby="basic-addon1" />
+                        <button class="btn btn-outline-secondary" type="button" (click)="Arama()">
+                            - Bul -
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Servis Tanımı</th>
+                                <th scope="col">Açıklama</th>
+                                <th scope="col">Arıza Dur.</th>
+                                <th scope="col">Per. ID</th>
+                                <th scope="col">Kay.Trh</th>
+                                <th scope="col">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of servisListesi">
+                                <th scope="row">{{ item.id }}</th>
+                                <td class="col-2">{{ item.servis_tanim }}</td>
+                                <td class="col-5">{{ item.servis_aciklama }}</td>
+                                <td class="col-1">{{ item.ariza_durum }}</td>
+                                <td class="col-1">{{ item.personel_id }}</td>
+                                <td class="col-2">{{ item.baslangic_tarihi | date: "dd.MM.yyyy" }}</td>
+                                <td class="col-1">
+                                    <button class="btn btn-sm btn-warning mx-2" type="button" (click)="servisDegistir(item)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" type="button" (click)="servisSil(item)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Arama</span>
-                <input type="text" class="form-control" placeholder="Arama" [(ngModel)]="inputArama" aria-label="Arama"
-                    aria-describedby="basic-addon1" />
-                <button class="btn btn-outline-secondary" type="button" (click)="Arama()">
-                    - Bul -
-                </button>
-            </div>
-        </div>
-        <div class="col-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Servis Tanımı</th>
-                        <th scope="col">Açıklama</th>
-                        <th scope="col">Kay.Trh</th>
-                        <th scope="col">İşlemler</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of servisListesi">
-                        <th scope="row">{{ item.id }}</th>
-                        <td>{{ item.servis_tanim }}</td>
-                        <td>{{ item.servis_aciklama }}</td>
-                        <td>{{ item.baslangic_tarihi | date: "dd.MM.yyyy" }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning mx-2" type="button" (click)="servisDegistir(item)">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger" type="button" (click)="servisSil(item)">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+
+
 </div>

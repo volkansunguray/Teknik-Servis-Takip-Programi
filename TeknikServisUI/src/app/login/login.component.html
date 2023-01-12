@@ -1,0 +1,67 @@
+<div class="container align-middle">
+    <div class="login d-flex align-items-center justify-content-center">
+        <div class="col-lg-6">
+            <div class="card mt-5">
+
+                <div class="card-header">
+                    <img class="card-img-top p-3" src="../../../assets/logo.png" alt="Card image cap">
+                </div>
+                <div class="card-body p-lg-5">
+                    <form autocomplete="off" [formGroup]="fgPersonel" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <input type="text" class="form-control" placeholder="E-posta adresi" aria-label="Username" aria-describedby="basic-addon1" formControlName="personel_eposta">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><span class="fa fa-key"></span></span>
+                                    <input type="password" class="form-control" placeholder="Şifre" aria-label="Username" aria-describedby="basic-addon1" formControlName="personel_sifre">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-lg btn-info btn-block mt-4">
+                                    <span *ngIf="!loading" class="fa fa-unlock mr-1"></span>
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Giriş Yap
+                                </button>
+
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div *ngIf="error" class="alert alert-danger" role="alert">
+                                    {{error}}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+
+                        <!-- <div class="form-group">
+                            <label for="username">E-Posta</label>
+                            <input type="text" class="form-control" formControlName="personel_eposta" [autofocus] />
+                            <div class="invalid-feedback">
+                                <div>
+                                    Kullanıcı adı zorunludur
+                                </div>
+                            </div>
+                            <label for="username">Parola</label>
+                            <input type="password" class="form-control" />
+                            <div class="invalid-feedback">
+                                <div>
+                                    Parola zorunludur
+                                </div>
+                            </div>
+
+                        </div> -->
+                        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

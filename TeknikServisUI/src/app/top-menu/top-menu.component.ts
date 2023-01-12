@@ -12,4 +12,8 @@ export class TopMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cikis(): void{
+    localStorage.clear();
+  }
+
 }

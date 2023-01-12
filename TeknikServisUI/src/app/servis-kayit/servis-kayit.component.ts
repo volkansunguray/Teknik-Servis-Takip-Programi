@@ -25,7 +25,8 @@ export class ServisKayitComponent implements OnInit {
     baslangic_tarihi: new FormControl(Date(), Validators.required),
     servis_saati: new FormControl(Date(), Validators.required),
     teslim_tarihi: new FormControl(),
-    personel_id: new FormControl(0, Validators.required)
+    personel_id: new FormControl(0, Validators.required),
+    ariza_durum: new FormControl(0, Validators.required)
   });
 
   constructor(
@@ -90,6 +91,8 @@ export class ServisKayitComponent implements OnInit {
     this.fgKayit.controls.servis_saati.setValue(this.kayitIcerik.servis_saati);
     this.fgKayit.controls.teslim_tarihi.setValue(this.kayitIcerik.teslim_tarihi!.toString().substring(0, 10));
     this.fgKayit.controls.personel_id.setValue(this.kayitIcerik.personel_id);
+    this.fgKayit.controls.ariza_durum.setValue(this.kayitIcerik.ariza_durum);
+
   }
 
   formToModel() {
@@ -97,8 +100,11 @@ export class ServisKayitComponent implements OnInit {
     this.kayitIcerik.servis_tanim = this.fgKayit.controls.servis_tanim.value ?? '';
     this.kayitIcerik.baslangic_tarihi = this.dateToStr();
     this.kayitIcerik.teslim_tarihi = this.dateToStr();
+    
     this.kayitIcerik.servis_aciklama = this.fgKayit.controls.servis_aciklama.value ?? '';
     this.kayitIcerik.personel_id = Number(this.fgKayit.controls.personel_id.value);
+    this.kayitIcerik.ariza_durum = Number(this.fgKayit.controls.ariza_durum.value);
+
   }
 
   kaydet() {

@@ -69,3 +69,4 @@ C:\Center\Teknik Servis Takip\TeknikServisAPI\TeknikServisAPI\obj\Debug\net6.0\T
 C:\Center\Teknik Servis Takip\TeknikServisAPI\TeknikServisAPI\obj\Debug\net6.0\ref\TeknikServisAPI.dll
 C:\Center\Teknik Servis Takip\TeknikServisAPI\TeknikServisAPI\obj\Debug\net6.0\TeknikServisAPI.Properties.Resources.resources
 C:\Center\Teknik Servis Takip\TeknikServisAPI\TeknikServisAPI\obj\Debug\net6.0\TeknikServisAPI.csproj.GenerateResource.cache
+C:\Center\Teknik Servis Takip\TeknikServisAPI\TeknikServisAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
