@@ -78,6 +78,23 @@ namespace TeknikServisAPI.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult personelSil(int id)
+        {
+            string sorgu = "delete from tbl_personel where id = @id";
+
+            var parametre = new
+            {
+                id = id
+            };
+
+            using (SqlConnection sqlsilme = new SqlConnection(connStr))
+            {
+                sqlsilme.Execute(sorgu, parametre);
+            }
+            return Ok();
+        }
+
         private string GenerateToken(string personel_eposta)
         {
             var tokenhandler = new JwtSecurityTokenHandler();

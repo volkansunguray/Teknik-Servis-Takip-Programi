@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnasayfaComponent } from './anasayfa/anasayfa.component';
 import { BodyComponent } from './body/body.component';
 import { AuthGuard } from './entity/services/auth.guard';
+import { AuthyonetimGuard } from './entity/services/authyonetim.guard';
 import { LoginComponent } from './login/login.component';
 import { ServisKayitComponent } from './servis-kayit/servis-kayit.component';
 import { ServisListeComponent } from './servis-liste/servis-liste.component';
+import { YonetimLoginComponent } from './yonetim-login/yonetim-login.component';
+import { YonetimPanelComponent } from './yonetim-panel/yonetim-panel.component';
 
 const routes: Routes = [
   {
@@ -36,9 +39,22 @@ const routes: Routes = [
         path: 'servis-kayit',
         canActivate: [AuthGuard],
         component: ServisKayitComponent
+      },
+      {
+        path: 'yonetim-login',
+        canActivate: [AuthGuard],
+        component: YonetimLoginComponent
+      },
+      {
+        path: 'yonetim-panel',
+        canActivate: [AuthyonetimGuard],
+        component: YonetimPanelComponent
       }
     ]
   }
+  
+  
+
 ];
 
 @NgModule({

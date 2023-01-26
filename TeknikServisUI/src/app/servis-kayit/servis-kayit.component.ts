@@ -26,7 +26,8 @@ export class ServisKayitComponent implements OnInit {
     servis_saati: new FormControl(Date(), Validators.required),
     teslim_tarihi: new FormControl(),
     personel_id: new FormControl(0, Validators.required),
-    ariza_durum: new FormControl(0, Validators.required)
+    ariza_durum: new FormControl(0, Validators.required),
+    yapilan_islem: new FormControl('')
   });
 
   constructor(
@@ -87,6 +88,7 @@ export class ServisKayitComponent implements OnInit {
     this.fgKayit.controls.id.setValue(this.kayitIcerik.id.toString());
     this.fgKayit.controls.servis_tanim.setValue(this.kayitIcerik.servis_tanim);
     this.fgKayit.controls.servis_aciklama.setValue(this.kayitIcerik.servis_aciklama);
+    this.fgKayit.controls.yapilan_islem.setValue(this.kayitIcerik.yapilan_islem);
     this.fgKayit.controls.baslangic_tarihi.setValue(this.kayitIcerik.baslangic_tarihi);
     this.fgKayit.controls.servis_saati.setValue(this.kayitIcerik.servis_saati);
     this.fgKayit.controls.teslim_tarihi.setValue(this.kayitIcerik.teslim_tarihi!.toString().substring(0, 10));
@@ -98,6 +100,7 @@ export class ServisKayitComponent implements OnInit {
   formToModel() {
     this.kayitIcerik.id = Number(this.fgKayit.controls.id.value);
     this.kayitIcerik.servis_tanim = this.fgKayit.controls.servis_tanim.value ?? '';
+    this.kayitIcerik.yapilan_islem = this.fgKayit.controls.yapilan_islem.value ?? '';
     this.kayitIcerik.baslangic_tarihi = this.dateToStr();
     this.kayitIcerik.teslim_tarihi = this.dateToStr();
     

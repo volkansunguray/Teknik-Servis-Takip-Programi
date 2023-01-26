@@ -12,6 +12,9 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './entity/services/auth.guard';
 import { BodyComponent } from './body/body.component';
+import { YonetimLoginComponent } from './yonetim-login/yonetim-login.component';
+import { YonetimPanelComponent } from './yonetim-panel/yonetim-panel.component';
+import { AuthyonetimGuard } from './entity/services/authyonetim.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { BodyComponent } from './body/body.component';
     ServisKayitComponent,
     AnasayfaComponent,
     LoginComponent,
-    BodyComponent
+    BodyComponent,
+    YonetimLoginComponent,
+    YonetimPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,7 @@ import { BodyComponent } from './body/body.component';
     HttpClientModule,
     ReactiveFormsModule    
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AuthyonetimGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

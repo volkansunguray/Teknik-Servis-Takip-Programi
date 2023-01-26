@@ -2,6 +2,7 @@ export class Servis {
     id: number = 0;
     servis_tanim: string | null = '';
     servis_aciklama: string = '';
+    yapilan_islem: string = '';
     baslangic_tarihi: string = '';
     teslim_tarihi: string = '';
     servis_saati: string = '';

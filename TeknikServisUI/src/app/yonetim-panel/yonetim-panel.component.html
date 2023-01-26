@@ -1,0 +1,48 @@
+<div class="container mt-5" style="font-size: 17px;">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
+                        {{ hataMesaji }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">personel_adi</th>
+                                <th scope="col">personel_eposta</th>
+                                <th scope="col">personel_yetki</th>
+                                <th scope="col">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of personelListesi">
+                                <th scope="row">{{ item.id }}</th>
+                                <td class="col-2">{{ item.personel_adi }}</td>
+                                <td class="col-5">{{ item.personel_eposta }}</td>
+                                <td class="col-1">{{ item.personel_yetki }}</td>
+                                <td class="col-1">
+                                    <button class="btn btn-sm btn-warning mx-2" type="button" (click)="personelDegistir(item)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" type="button" (click)="personelSil(item)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
