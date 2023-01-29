@@ -27,7 +27,7 @@ namespace TeknikServisAPI.Controllers
             //var gorevListe = conn.Query<TeknikServis>("Select * from tbl_teknikservis");
             //return Ok(gorevListe);
             List<TeknikServis> teknikServisListe = new List<TeknikServis>();
-            string sorgu = "Select * from tbl_teknikservis where (1 = 1) ";
+            string sorgu = "Select * from tbl_teknikservis where (1 = 1)";
             if (id > 0) sorgu += " and id = @prmid";
             if (!string.IsNullOrEmpty(arama))
             {

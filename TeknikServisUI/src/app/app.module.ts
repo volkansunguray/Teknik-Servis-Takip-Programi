@@ -15,6 +15,7 @@ import { BodyComponent } from './body/body.component';
 import { YonetimLoginComponent } from './yonetim-login/yonetim-login.component';
 import { YonetimPanelComponent } from './yonetim-panel/yonetim-panel.component';
 import { AuthyonetimGuard } from './entity/services/authyonetim.guard';
+import { YonetimKayitComponent } from './yonetim-kayit/yonetim-kayit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthyonetimGuard } from './entity/services/authyonetim.guard';
     LoginComponent,
     BodyComponent,
     YonetimLoginComponent,
-    YonetimPanelComponent
+    YonetimPanelComponent,
+    YonetimKayitComponent
   ],
   imports: [
     BrowserModule,

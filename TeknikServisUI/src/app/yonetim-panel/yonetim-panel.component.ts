@@ -21,7 +21,7 @@ export class YonetimPanelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.personelListesi
+    this.personelListesiOku();
   }
 
   personelListesiOku() {
@@ -32,7 +32,7 @@ export class YonetimPanelComponent implements OnInit {
   }
 
   personelDegistir(item: Personel) {
-    this.router.navigate(['/personel-kayit', item.id]);
+    this.router.navigate(['/yonetim-kayit', item.id]);
   }
 
   personelSil(item: Personel) {

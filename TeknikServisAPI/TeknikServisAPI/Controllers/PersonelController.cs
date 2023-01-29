@@ -43,13 +43,13 @@ namespace TeknikServisAPI.Controllers
             return Ok(personelListe);
         }
 
-        private void ServisGecerlilikKontrolu(TeknikServis model)
+        private void personelGecerlilikKontrolu(Personel model)
         {
             string hataMesaji = "";
-            if (model.id < 1) model.baslangic_tarihi = DateTime.Now;
-            if (model.personel_id < 1) hataMesaji += "Personel seçimi yapılmamış";
-            if (string.IsNullOrEmpty(model.servis_tanim)) hataMesaji += "Servis tanımını boş geçemezsiniz!";
-            model.teslim_tarihi = DateTime.Now;
+            if (string.IsNullOrEmpty(model.personel_adi)) hataMesaji += "Personel isim girişi yapılmamış.";
+            if (string.IsNullOrEmpty(model.personel_eposta)) hataMesaji += "Personel E-Posta'yı boş geçemezsiniz!";
+            if (string.IsNullOrEmpty(model.personel_sifre)) hataMesaji += "Personel şifresini boş geçemezsiniz!";
+            if (string.IsNullOrEmpty(model.personel_yetki)) hataMesaji += "Personel yetkiyi boş geçemezsiniz!";
 
             if (!string.IsNullOrEmpty(hataMesaji)) throw new Exception(hataMesaji);
         }
@@ -78,6 +78,69 @@ namespace TeknikServisAPI.Controllers
             }
         }
 
+        [HttpPost("yonetim")]
+        public IActionResult LoginYonetim(Personel personel)
+        {
+            //List<Personel> personelListe = new List<Personel>();
+            try
+            {
+                if (string.IsNullOrEmpty(personel.personel_eposta)) throw new Exception("E-posta adresi boş olamaz!");
+                string sorgu = "select * from tbl_personel where personel_eposta = @eposta and personel_sifre = @sifre and personel_yetki = 'Yönetici'";
+                var prm = new { eposta = personel.personel_eposta, sifre = personel.personel_sifre };
+                var aPersonel = conn.Query<Personel>(sorgu, prm).FirstOrDefault();
+                if (aPersonel == null) throw new Exception("Kullanıcı bulunamadı!");
+                var token = GenerateToken(personel.personel_eposta);
+                return Ok(new
+                {
+                    aPersonel,
+                    JwtKey = token
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest("HATA OLUŞTU: " + e.Message);
+            }
+        }
+
+        [HttpPost("kayit")]
+        public IActionResult PersonelEkle(Personel model)
+        {
+            try
+            {
+                personelGecerlilikKontrolu(model);
+                string sorgu = @"
+                    insert into tbl_personel (
+                        personel_adi, 
+                        personel_eposta, 
+                        personel_sifre, 
+                        personel_telefon,
+                        personel_yetki
+                    ) 
+                    values (
+                        @personel_adi, 
+                        @personel_eposta, 
+                        @personel_sifre, 
+                        @personel_telefon, 
+                        @personel_yetki);
+                    SELECT CAST(SCOPE_IDENTITY() as int);";
+                var parametre = new
+                {
+                    id = model.id,
+                    personel_adi = model.personel_adi,
+                    personel_eposta = model.personel_eposta,
+                    personel_sifre = model.personel_sifre,
+                    personel_telefon = model.personel_telefon,
+                    personel_yetki = model.personel_yetki
+                };
+                model.id = conn.QueryFirstOrDefault<long>(sorgu, parametre);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete("{id}")]
         public IActionResult personelSil(int id)
         {
@@ -94,6 +157,8 @@ namespace TeknikServisAPI.Controllers
             }
             return Ok();
         }
+
+
 
         private string GenerateToken(string personel_eposta)
         {

@@ -7,6 +7,7 @@ import { AuthyonetimGuard } from './entity/services/authyonetim.guard';
 import { LoginComponent } from './login/login.component';
 import { ServisKayitComponent } from './servis-kayit/servis-kayit.component';
 import { ServisListeComponent } from './servis-liste/servis-liste.component';
+import { YonetimKayitComponent } from './yonetim-kayit/yonetim-kayit.component';
 import { YonetimLoginComponent } from './yonetim-login/yonetim-login.component';
 import { YonetimPanelComponent } from './yonetim-panel/yonetim-panel.component';
 
@@ -49,6 +50,11 @@ const routes: Routes = [
         path: 'yonetim-panel',
         canActivate: [AuthyonetimGuard],
         component: YonetimPanelComponent
+      },
+      {
+        path: 'yonetim-kayit',
+        canActivate: [AuthyonetimGuard],
+        component: YonetimKayitComponent
       }
     ]
   }

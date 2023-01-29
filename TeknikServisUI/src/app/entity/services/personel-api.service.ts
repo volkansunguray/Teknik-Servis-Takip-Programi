@@ -20,4 +20,8 @@ export class PersonelApiService {
   deletePersonel(id: number){
     return this.http.delete(this.apiurl + '/personel/' + id);
   }
+
+  postPersonel(personel: Personel){
+    return this.http.post<Personel>(this.apiurl + '/personel/kayit', personel, {});
+  }
 }

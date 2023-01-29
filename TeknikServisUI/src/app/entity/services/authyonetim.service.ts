@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Personel } from '../models/personel';
-import { ServisApiService } from './servis-api.service';
+import { PersonelApiService } from './personel-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class AuthyonetimService {
 
   constructor(
     private http: HttpClient,
-    private webApi: ServisApiService,
+    private webApi: PersonelApiService,
   ) { }
 
   login(username: string = '', password: string = '') {
@@ -19,7 +19,7 @@ export class AuthyonetimService {
     personel2.personel_sifre = password;
     personel2.personel_eposta = username;
     personel2.personel_adi = username;
-    return this.http.post<Personel>('http://localhost:7125/personel/', personel2);
+    return this.http.post<Personel>('http://localhost:7125/personel/yonetim', personel2);
   }
 
 }

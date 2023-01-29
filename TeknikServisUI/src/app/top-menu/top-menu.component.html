@@ -15,8 +15,16 @@
           <li class="nav-item">
             <a class="nav-link" href="servis-kayit" routerLinkActive="active">Yeni Kayıt</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-primary border border-primary" href="yonetim-login" routerLinkActive="active">Yönetim Paneli</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive="active">
+              Yönetim Paneli
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="yonetim-panel" routerLinkActive="active">Panel</a></li>
+              <li><a class="dropdown-item" href="yonetim-kayit" routerLinkActive="active">Yeni Kayıt</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item link-danger" href="anasayfa" (click)="yonetimCikis()">Yönetim Çıkış</a></li>
+            </ul>
           </li>
         </ul>
         <ul>

@@ -20,7 +20,6 @@ export class ServisApiService {
 
 
   getServisListesi(arama: string | null, servisId: number) {
-    // return this.http.get(environment.api_url + '/mobil/sehir-liste', { headers: this.header })
     let params = new HttpParams();
     if (arama) params = params.append('arama', arama.toString());
     if (servisId) params = params.append('id', servisId.toString());

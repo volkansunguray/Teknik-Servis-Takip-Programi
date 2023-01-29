@@ -28,18 +28,6 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     return true;
-
-    /*
-    if (this.authSvc.currentUserSubject.value) {
-      let token = this.authSvc.currentUserValue.JWT_KEY;
-      if (token != null)
-      {
-        if (!this.tokenExpired(token)) result = true;
-      } 
-    }  
-    if (!result) this.router.navigate(['/login']);
-    return result;
-    */  
   }
 
   private tokenExpired(token: string): boolean {

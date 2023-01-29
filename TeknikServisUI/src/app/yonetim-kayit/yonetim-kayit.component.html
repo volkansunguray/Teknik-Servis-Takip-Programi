@@ -1,0 +1,82 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div *ngIf="hataMesaji" class="alert alert-warning" role="alert">
+                {{ hataMesaji }}
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="fgKayit" (ngSubmit)="kaydet()">
+        <div class="card">
+            <div class="card-header row">
+                <div class="col-md-10">
+                    Personel Kayıt Ayrıntısı
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="id">ID</span>
+                            <input type="text" class="form-control" formControlName="id" aria-label="ID"
+                                aria-describedby="basic-addon1" readonly />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="personel_yetki">Yetki</span>
+                            <select class="form-select" aria-label="Personel Yetkisi"
+                                formControlName="personel_yetki">
+                                <option value="Personel">
+                                    Personel
+                                </option>
+                                <option value="Yönetici">
+                                    Yönetici
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Personel E-Posta</span>
+                            <input type="text" class="form-control" placeholder="Personel E-Posta" aria-label="Personel E-Posta"
+                                aria-describedby="basic-addon1" formControlName="personel_eposta"/>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Personel Adı</span>
+                            <input type="text" class="form-control" placeholder="Personel Adı" aria-label="Personel Adı"
+                                aria-describedby="basic-addon1" formControlName="personel_adi"/>
+                        </div>
+                    </div>                    
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Personel Sifre</span>
+                            <input type="text" class="form-control" placeholder="Personel Şifre" aria-label="Personel Şifre"
+                                aria-describedby="basic-addon1" formControlName="personel_sifre"/>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text btn-primary" id="basic-addon1">Telefon Numarası</span>
+                            <input type="text" class="form-control" placeholder="Telefon Numarası" aria-label="Telefon Numarası"
+                                aria-describedby="basic-addon1" formControlName="personel_telefon"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="!fgKayit.valid">Kaydet</button>
+            </div>
+
+        </div>
+
+    </form>
+</div>

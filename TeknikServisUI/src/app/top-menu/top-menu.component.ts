@@ -16,4 +16,8 @@ export class TopMenuComponent implements OnInit {
     localStorage.clear();
   }
 
+  yonetimCikis(): void{
+    localStorage.removeItem("loginYonetim");
+  }
+
 }
