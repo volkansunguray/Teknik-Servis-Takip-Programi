@@ -38,7 +38,7 @@ export class YonetimKayitComponent implements OnInit {
     this.sub1 = this.rout.params.subscribe(params => {
       this.kayitId = +params['id']; // (+) converts string 'id' to a number
       if (this.kayitId) {
-        // this.personelOku();
+        this.personelOku();
       }
       else {
         this.modelToForm();
@@ -70,27 +70,28 @@ export class YonetimKayitComponent implements OnInit {
   }
 
   personelListesiOku() {
-    this.sub1 = this.webApi.getPersonelListesi().subscribe({
+    this.sub1 = this.webApi.getPersonelListesi(0).subscribe({
       next: (data: Personel[]) => { this.personelListesi = data; },
       error: (error: any) => { this.hataMesaji = 'HATA OLUŞTU: ' + error.message; }
     });
   }
 
-  // personelOku() {
-  //   this.sub2 = this.webApi.getPersonelListesi(null, this.kayitId).subscribe({
-  //     next: (data: Personel[]) => {
-  //       this.kayitIcerik = data[0];
-  //       this.modelToForm();
-  //     },
-  //     error: (error: any) => { this.hataMesaji = 'HATA OLUŞTU: ' + error.message; }
-  //   });
-  // }
+  personelOku() {
+    this.sub2 = this.webApi.getPersonelListesi(this.kayitId).subscribe({
+      next: (data: Personel[]) => {
+        this.kayitIcerik = data[0];
+        this.modelToForm();
+      },
+      error: (error: any) => { this.hataMesaji = 'HATA OLUŞTU: ' + error.message; }
+    });
+  }
 
   kaydet() {
     this.formToModel();
     this.webApi.postPersonel(this.kayitIcerik).subscribe({
       next: (data: Personel) => {
-        this.router.navigate(['/yonetim-kayit', data.id]);
+        this.router.navigate(['/yonetim-kayit', data.id]);  
+        this.router.navigateByUrl('/yonetim-panel');
       },
       error: (error: any) => { this.hataMesaji = 'HATA OLUŞTU: ' + error.error; }
     });

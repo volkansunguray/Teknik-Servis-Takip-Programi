@@ -25,10 +25,10 @@
 
                     <div class="col-md-6">
                         <div class="input-group mb-3">
-                            <span class="input-group-text btn-primary" id="personel-id">P. ID</span>
+                            <span class="input-group-text btn-primary" id="personel-id">Personel ID</span>
                             <select class="form-select" aria-label="Default select example"
                                 formControlName="personel_id">
-                                <option *ngFor="let item of personelListesi" value="0" selected>
+                                <option value="0" selected>
                                     &lt;Personel Seçiniz&gt;
                                 </option>
                                 <option *ngFor="let item of personelListesi" value="{{ item.id }}">

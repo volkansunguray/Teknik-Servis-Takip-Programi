@@ -25,7 +25,7 @@ export class YonetimPanelComponent implements OnInit {
   }
 
   personelListesiOku() {
-    this.sub1 = this.webApi.getPersonelListesi().subscribe({
+    this.sub1 = this.webApi.getPersonelListesi(0).subscribe({
       next: (data: Personel[]) => { this.personelListesi = data; },
       error: (error: any) => { this.hataMesaji = 'HATA OLUŞTU: ' + error.message; }
     });

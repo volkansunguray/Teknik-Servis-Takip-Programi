@@ -115,6 +115,7 @@ export class ServisKayitComponent implements OnInit {
     this.webApi.postServis(this.kayitIcerik).subscribe({
       next: (data: Servis) => {
         this.router.navigate(['/servis-kayit', data.id]);
+        this.router.navigateByUrl('/servis-liste');
       },
       error: (error: any) => { this.hataMesaji = 'HATA OLUŞTU: ' + error.error; }
     });

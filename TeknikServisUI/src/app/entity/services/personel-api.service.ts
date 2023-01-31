@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Personel } from '../models/personel';
 
@@ -13,8 +13,10 @@ export class PersonelApiService {
 
   apiurl = "http://localhost:7125";
 
-  getPersonelListesi(){
-    return this.http.get<Personel[]>('http://localhost:7125/personel/', {})
+  getPersonelListesi(personelId: number){
+    let params = new HttpParams();
+    if (personelId) params = params.append('id', personelId.toString());
+    return this.http.get<Personel[]>('http://localhost:7125/personel/', {params})
   }
 
   deletePersonel(id: number){
@@ -22,6 +24,12 @@ export class PersonelApiService {
   }
 
   postPersonel(personel: Personel){
-    return this.http.post<Personel>(this.apiurl + '/personel/kayit', personel, {});
+    if (personel.id > 0){
+      return this.http.put<Personel>(this.apiurl + '/personel/' + personel.id.toString(), personel, {});
+    }
+    else
+    { 
+      return this.http.post<Personel>(this.apiurl + '/personel/kayit', personel, {});
+    }
   }
 }

@@ -5,7 +5,9 @@
             <p>Arıza giriş ve bitimi işlemlerini  "Servis Listesi" bölümünden, yeni Kayıt işlemlerini "Yeni Kayıt" bölümünden yapabilirsiniz.</p>
             <hr>
             <p>Güncel Çalışan Listesi</p>
-            <p *ngFor="let item of personelListesi">{{ item.personel_adi }}</p>
+            <tr *ngFor="let item of personelListesi">
+                <td>{{ item.personel_adi }}  - ({{item.personel_telefon}})</td>
+            </tr>
         </div>
     </div>
 </div>

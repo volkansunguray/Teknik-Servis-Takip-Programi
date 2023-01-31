@@ -158,6 +158,43 @@ namespace TeknikServisAPI.Controllers
             return Ok();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult personelGuncelle(int id, Personel model)
+        {
+            try
+            {
+                personelGecerlilikKontrolu(model);
+                string sorgu = "";
+                sorgu = @"
+                update
+                   tbl_personel 
+                set 
+                    --id=@id, 
+                    personel_adi=@personel_adi, 
+                    personel_eposta=@personel_eposta, 
+                    personel_sifre=@personel_sifre, 
+                    personel_telefon = @personel_telefon, 
+                    personel_yetki=@personel_yetki where id=@id";
+
+                var parametre = new
+                {
+                    id = model.id,
+                    personel_adi = model.personel_adi,
+                    personel_eposta = model.personel_eposta,
+                    personel_sifre = model.personel_sifre,
+                    personel_telefon = model.personel_telefon,
+                    personel_yetki = model.personel_yetki
+                };
+                conn.Execute(sorgu, parametre);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
 
 
         private string GenerateToken(string personel_eposta)
@@ -167,12 +204,11 @@ namespace TeknikServisAPI.Controllers
             var credential = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(ClaimTypes.Email,personel_eposta),
-                new Claim("VolkanSunguray","Teknik Servis Takip Programı")
+                new Claim(ClaimTypes.Email,personel_eposta)
             };
             var token = new JwtSecurityToken(
                 issuer: _config["Token:Issuer"],
-                audience: _config["Token:Issuer"],
+                audience: _config["Token:audience"],
                 claims,
                 expires: DateTime.Now.AddHours(1),
                 signingCredentials: credential

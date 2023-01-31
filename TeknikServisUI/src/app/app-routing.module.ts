@@ -52,6 +52,11 @@ const routes: Routes = [
         component: YonetimPanelComponent
       },
       {
+        path: 'yonetim-kayit/:id',
+        canActivate: [AuthyonetimGuard],
+        component: YonetimKayitComponent
+      },
+      {
         path: 'yonetim-kayit',
         canActivate: [AuthyonetimGuard],
         component: YonetimKayitComponent

@@ -19,6 +19,7 @@ export class AnasayfaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.personelListesiOku();
   }
 
   personelListesiOku() {
